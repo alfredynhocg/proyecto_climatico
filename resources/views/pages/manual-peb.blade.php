@@ -1,5 +1,6 @@
 @extends('layouts.app', [
-    'title' => 'Manual del PEB - Mochila de Acción Climática - Educavo',
+    'title' => 'Manual del PEB - Educación sobre Cambio Climático - Educavo',
+    'metaDescription' => '30 actividades pedagógicas sobre cambio climático organizadas por edad (6 a 18 años) para Educadores Comunitarios de Enseña por Bolivia en el área rural.',
     'variant' => 'inner',
 ])
 
@@ -155,7 +156,7 @@ $rubricas = [
         <div class="breadcrumbs-text white-color">
             <h1 class="page-title">Manual del PEB</h1>
             <ul>
-                <li><a class="active" href="{{ route('home') }}">Home</a></li>
+                <li><a class="active" href="{{ route('home') }}">Inicio</a></li>
                 <li>Manual del PEB — Mochila de Acción Climática</li>
             </ul>
         </div>

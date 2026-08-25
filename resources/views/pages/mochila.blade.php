@@ -1,5 +1,6 @@
 @extends('layouts.app', [
-    'title' => 'Mochila Interactiva 3D - Educavo',
+    'title' => 'Mochila Interactiva 3D sobre Cambio Climático - Educavo',
+    'metaDescription' => 'Explora en 3D la Mochila de Acción Climática y descubre datos reales sobre cambio climático, escasez hídrica, reciclaje y reforestación mientras juegas.',
     'variant' => 'inner',
 ])
 
@@ -19,7 +20,7 @@
             <h1 class="page-title">Mochila Interactiva 3D</h1>
             <ul>
                 <li>
-                    <a class="active" href="{{ route('home') }}">Home</a>
+                    <a class="active" href="{{ route('home') }}">Inicio</a>
                 </li>
                 <li>Mochila Interactiva 3D</li>
             </ul>
@@ -53,7 +54,16 @@
 
                         <div class="mochila-fallback" data-fallback>
                             <h4>Tu navegador no soporta gráficos 3D</h4>
-                            <p>Prueba con una versión reciente de Chrome, Edge o Firefox para ver la mochila interactiva.</p>
+                            <p>Prueba con una versión reciente de Chrome, Edge o Firefox para ver la mochila interactiva. Mientras tanto, aquí tienes los 6 conceptos climáticos que se descubren jugando:</p>
+                            <ul class="mochila-fallback-list">
+                                <li><strong>🌡️ Cambio climático</strong> — se mide en años y décadas, no en el clima de un solo día.</li>
+                                <li><strong>💧 Escasez hídrica</strong> — cuidar las fuentes de agua ayuda a que se mantengan por más tiempo.</li>
+                                <li><strong>♻️ Reducir, reusar, reciclar</strong> — el orden importa: primero reducir, luego reusar, y reciclar al final.</li>
+                                <li><strong>🌳 Reforestación</strong> — sembrar especies nativas es preferible porque se adaptan mejor al territorio.</li>
+                                <li><strong>🤝 Brigada Estudiantil</strong> — el modelo de Enseña por Bolivia ya alcanzó a más de 13.000 estudiantes.</li>
+                                <li><strong>⭐ Liderazgo climático</strong> — no depende de la edad: niñas, niños y adolescentes pueden liderar acciones.</li>
+                            </ul>
+                            <a class="readon purple-btn" href="{{ route('glosario-climatico') }}">Ver el Glosario Climático completo</a>
                         </div>
 
                         <div class="mochila-tooltip" data-tooltip></div>
@@ -61,6 +71,12 @@
                         <div class="mochila-celebrate" data-celebrate>
                             <h4 data-celebrate-title>¡Aprendiste algo nuevo! 🎉</h4>
                             <p data-celebrate-text>Sigue coleccionando</p>
+                            <a class="mochila-celebrate-link" data-celebrate-link href="{{ route('glosario-climatico') }}" target="_blank" rel="noopener">Ver en el Glosario Climático →</a>
+                        </div>
+
+                        <div class="mochila-partner-badge">
+                            <img src="{{ asset('assets/images/banner/home11/logo-ensena.png') }}" alt="Enseña por Bolivia">
+                            <span>En alianza con<br>Enseña por Bolivia</span>
                         </div>
 
                         <div class="mochila-hud">

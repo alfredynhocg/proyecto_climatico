@@ -1,5 +1,6 @@
 @extends('layouts.app', [
-    'title' => 'Glosario Climático - Mochila de Acción Climática - Educavo',
+    'title' => 'Glosario de Cambio Climático - Educavo',
+    'metaDescription' => '23 términos clave sobre cambio climático explicados en lenguaje sencillo: qué son, cómo se ven en tu comunidad y un dato clave de cada uno.',
     'variant' => 'inner',
 ])
 
@@ -82,7 +83,7 @@ $etapas = [
         <div class="breadcrumbs-text white-color">
             <h1 class="page-title">Glosario Climático</h1>
             <ul>
-                <li><a class="active" href="{{ route('home') }}">Home</a></li>
+                <li><a class="active" href="{{ route('home') }}">Inicio</a></li>
                 <li>Glosario Climático</li>
             </ul>
         </div>
@@ -173,4 +174,27 @@ $etapas = [
     <!-- CTA End -->
 
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (!window.location.hash) return;
+        var target = document.querySelector(window.location.hash);
+        if (!target || !target.classList.contains('collapse')) return;
+
+        function openAndScroll() {
+            if (window.bootstrap && window.bootstrap.Collapse) {
+                window.bootstrap.Collapse.getOrCreateInstance(target, { toggle: false }).show();
+            } else {
+                target.classList.add('show');
+            }
+            setTimeout(function () {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+
+        openAndScroll();
+    });
+</script>
+@endpush
 @endsection

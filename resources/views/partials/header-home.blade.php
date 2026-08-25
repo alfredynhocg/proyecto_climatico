@@ -26,7 +26,7 @@
                         <nav class="rs-menu">
                            <ul class="nav-menu">
                               <li class="{{ request()->routeIs('home') ? 'current-menu-item' : '' }}">
-                                  <a href="{{ route('home') }}">Home</a>
+                                  <a href="{{ route('home') }}">Inicio</a>
                               </li>
 
                                <li>

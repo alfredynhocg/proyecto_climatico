@@ -5,8 +5,31 @@
     max-height: 80vh;
     border-radius: 20px;
     overflow: hidden;
-    background: radial-gradient(circle at 50% 20%, #eef8de 0%, #dcefc4 45%, #cfe8ac 100%);
+    background: url('/assets/images/mochila-fondo.svg') center/cover no-repeat, radial-gradient(circle at 50% 20%, #eef8de 0%, #dcefc4 45%, #cfe8ac 100%);
     box-shadow: 0 30px 60px rgba(39, 60, 102, 0.15);
+}
+
+.mochila-partner-badge {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 12px;
+    padding: 8px 14px;
+    box-shadow: 0 10px 25px rgba(39, 60, 102, 0.18);
+    font-family: 'Rubik', sans-serif;
+    font-size: 11px;
+    color: #54647b;
+    line-height: 1.3;
+}
+
+.mochila-partner-badge img {
+    height: 30px;
+    width: auto;
 }
 
 .mochila-stage canvas {
@@ -37,9 +60,10 @@
 
 .mochila-hud-top {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 16px;
+    gap: 10px 16px;
 }
 
 .mochila-chip {
@@ -73,7 +97,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    white-space: nowrap;
 }
 
 .mochila-score .dot {
@@ -174,6 +197,7 @@
     gap: 10px;
     text-align: center;
     padding: 40px;
+    overflow-y: auto;
     background: radial-gradient(circle at 50% 20%, #eef8de 0%, #dcefc4 45%, #cfe8ac 100%);
     color: #273c66;
     font-family: 'Rubik', sans-serif;
@@ -181,6 +205,33 @@
 
 .mochila-fallback.is-visible {
     display: flex;
+}
+
+.mochila-fallback p {
+    max-width: 480px;
+}
+
+.mochila-fallback-list {
+    list-style: none;
+    margin: 0 0 10px;
+    padding: 0;
+    max-width: 480px;
+    text-align: left;
+}
+
+.mochila-fallback-list li {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.mochila-fallback-list li strong {
+    display: block;
+    margin-bottom: 2px;
+    color: #4c8014;
 }
 
 .mochila-celebrate {
@@ -220,4 +271,67 @@
     margin: 0;
     font-size: 14px;
     line-height: 1.5;
+}
+
+.mochila-celebrate-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #76BB20;
+    pointer-events: auto;
+}
+
+.mochila-celebrate-link:hover {
+    color: #4c8014;
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+    .mochila-stage {
+        height: 560px;
+    }
+    .mochila-hud {
+        padding: 14px;
+    }
+    .mochila-chip {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+    .mochila-score {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+    .mochila-hint {
+        font-size: 12px;
+        padding: 8px 16px;
+        max-width: 92%;
+    }
+    .mochila-partner-badge {
+        left: 10px;
+        bottom: 10px;
+        max-width: 118px;
+        padding: 6px 10px;
+        font-size: 9px;
+        gap: 6px;
+    }
+    .mochila-partner-badge img {
+        height: 20px;
+    }
+    .mochila-celebrate {
+        padding: 16px 20px;
+        top: 36%;
+    }
+    .mochila-fallback {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 380px) {
+    .mochila-stage {
+        height: 480px;
+    }
+    .mochila-hud-top {
+        justify-content: center;
+    }
 }

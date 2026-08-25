@@ -23,12 +23,12 @@ const PALETTE = {
 const OUTLINE_COLOR = 0x1c2b4a;
 
 const BADGES = [
-    { label: '🌡️', bg: '#e0503a', ring: '#c23f2c', name: 'Cambio climático', dato: "El cambio climático no es lo mismo que 'el clima de hoy': un día frío no significa que no exista — este se mide en años y décadas." },
-    { label: '💧', bg: '#2f8fd1', ring: '#1c6a9c', name: 'Escasez hídrica', dato: 'Cuidar las fuentes de agua (no contaminarlas, no talar los árboles cercanos) ayuda a que se mantengan por más tiempo.' },
-    { label: '♻️', bg: '#76bb20', ring: '#5c9418', name: 'Reducir, reusar, reciclar', dato: 'El orden importa: primero reducir, luego reusar, y reciclar como última opción.' },
-    { label: '🌳', bg: '#5c9418', ring: '#436012', name: 'Reforestación', dato: 'Sembrar especies nativas es preferible porque están mejor adaptadas al clima y suelo del territorio.' },
-    { label: '🤝', bg: '#273c66', ring: '#1c335f', name: 'Brigada Estudiantil', dato: 'El modelo de Brigadas Estudiantiles de Enseña por Bolivia ha alcanzado a más de 13.000 estudiantes en más de 100 unidades educativas.' },
-    { label: '⭐', bg: '#f4bf00', ring: '#c9a100', name: 'Liderazgo climático', dato: 'El liderazgo climático no depende de la edad: niñas, niños y adolescentes pueden liderar acciones concretas en su comunidad.' },
+    { label: '🌡️', bg: '#e0503a', ring: '#c23f2c', name: 'Cambio climático', dato: "El cambio climático no es lo mismo que 'el clima de hoy': un día frío no significa que no exista — este se mide en años y décadas.", anchor: 'conozco-0' },
+    { label: '💧', bg: '#2f8fd1', ring: '#1c6a9c', name: 'Escasez hídrica', dato: 'Cuidar las fuentes de agua (no contaminarlas, no talar los árboles cercanos) ayuda a que se mantengan por más tiempo.', anchor: 'conecto-1' },
+    { label: '♻️', bg: '#76bb20', ring: '#5c9418', name: 'Reducir, reusar, reciclar', dato: 'El orden importa: primero reducir, luego reusar, y reciclar como última opción.', anchor: 'puedo-actuar-0' },
+    { label: '🌳', bg: '#5c9418', ring: '#436012', name: 'Reforestación', dato: 'Sembrar especies nativas es preferible porque están mejor adaptadas al clima y suelo del territorio.', anchor: 'puedo-actuar-4' },
+    { label: '🤝', bg: '#273c66', ring: '#1c335f', name: 'Brigada Estudiantil', dato: 'El modelo de Brigadas Estudiantiles de Enseña por Bolivia ha alcanzado a más de 13.000 estudiantes en más de 100 unidades educativas.', anchor: 'lidero-0' },
+    { label: '⭐', bg: '#f4bf00', ring: '#c9a100', name: 'Liderazgo climático', dato: 'El liderazgo climático no depende de la edad: niñas, niños y adolescentes pueden liderar acciones concretas en su comunidad.', anchor: 'lidero-1' },
 ];
 
 /* ---------------------------------------------------------------- */
@@ -701,6 +701,8 @@ function initMochila(root) {
     const celebrateEl = root.querySelector('[data-celebrate]');
     const celebrateTitleEl = root.querySelector('[data-celebrate-title]');
     const celebrateTextEl = root.querySelector('[data-celebrate-text]');
+    const celebrateLinkEl = root.querySelector('[data-celebrate-link]');
+    const glosarioBaseUrl = celebrateLinkEl?.getAttribute('href') || '/glosario-climatico';
 
     if (!window.WebGLRenderingContext) {
         fallbackEl?.classList.add('is-visible');
@@ -783,7 +785,7 @@ function initMochila(root) {
             transparent: true,
         });
         const mesh = new THREE.Mesh(new THREE.CircleGeometry(0.22, 28), material);
-        mesh.userData = { name: cfg.name, dato: cfg.dato };
+        mesh.userData = { name: cfg.name, dato: cfg.dato, anchor: cfg.anchor };
         scene.add(mesh);
         return {
             mesh,
@@ -825,6 +827,63 @@ function initMochila(root) {
     let score = 0;
     const collectedTerms = new Set();
 
+    const PROGRESS_KEY = 'mochila-clima-progress';
+
+    function loadProgress() {
+        try {
+            const raw = window.localStorage?.getItem(PROGRESS_KEY);
+            if (!raw) return;
+            const saved = JSON.parse(raw);
+            if (Array.isArray(saved)) {
+                saved.forEach((name) => collectedTerms.add(name));
+                score = collectedTerms.size;
+            }
+        } catch (e) {
+            /* localStorage unavailable (private mode, disabled) — progress just won't persist */
+        }
+    }
+
+    function saveProgress() {
+        try {
+            window.localStorage?.setItem(PROGRESS_KEY, JSON.stringify(Array.from(collectedTerms)));
+        } catch (e) {
+            /* ignore */
+        }
+    }
+
+    loadProgress();
+
+    let badgeHintTween = null;
+    let hintedEntry = null;
+    function startBadgeHint() {
+        if (badgeHintTween || collectedTerms.size > 0) return;
+        const candidates = badges.filter((b) => !b.locked);
+        if (!candidates.length) return;
+        hintedEntry = candidates[Math.floor(Math.random() * candidates.length)];
+        badgeHintTween = gsap.to(hintedEntry.mesh.scale, {
+            x: 1.35, y: 1.35, z: 1.35,
+            duration: 0.5,
+            yoyo: true,
+            repeat: 5,
+            ease: 'power1.inOut',
+            onComplete: () => {
+                hintedEntry.mesh.scale.set(1, 1, 1);
+                badgeHintTween = null;
+                hintedEntry = null;
+            },
+        });
+    }
+    function stopBadgeHint() {
+        if (!badgeHintTween) return;
+        badgeHintTween.kill();
+        badgeHintTween = null;
+        if (hintedEntry) {
+            hintedEntry.mesh.scale.set(1, 1, 1);
+            hintedEntry = null;
+        }
+    }
+    setTimeout(startBadgeHint, 7000);
+
     function setPointerFromEvent(event) {
         const rect = canvas.getBoundingClientRect();
         pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -862,17 +921,22 @@ function initMochila(root) {
 
     function showFact(entry) {
         if (!celebrateEl) return;
-        const { name, dato } = entry.mesh.userData;
+        const { name, dato, anchor } = entry.mesh.userData;
         if (celebrateTitleEl) celebrateTitleEl.textContent = `¡Aprendiste algo nuevo! 🎉 ${name}`;
         if (celebrateTextEl) celebrateTextEl.textContent = dato;
+        if (celebrateLinkEl) {
+            celebrateLinkEl.href = `${glosarioBaseUrl}#collapse-${anchor}`;
+            celebrateLinkEl.style.display = '';
+        }
         celebrateEl.classList.add('is-visible');
-        gsap.delayedCall(3.2, () => celebrateEl.classList.remove('is-visible'));
+        gsap.delayedCall(3.6, () => celebrateEl.classList.remove('is-visible'));
     }
 
     function showCompletion() {
         if (!celebrateEl) return;
         if (celebrateTitleEl) celebrateTitleEl.textContent = '¡Completaste la colección! 🌎';
         if (celebrateTextEl) celebrateTextEl.textContent = 'Descubriste los 6 conceptos climáticos de la Mochila de Acción Climática. Sigue jugando o pásate al Manual del PEB para las 30 actividades completas.';
+        if (celebrateLinkEl) celebrateLinkEl.style.display = 'none';
         celebrateEl.classList.add('is-visible');
         gsap.delayedCall(3.8, () => celebrateEl.classList.remove('is-visible'));
     }
@@ -881,12 +945,14 @@ function initMochila(root) {
         if (entry.locked) return;
         entry.locked = true;
         hideTooltip();
+        stopBadgeHint();
 
         const isNewDiscovery = !collectedTerms.has(entry.mesh.userData.name);
         if (isNewDiscovery) {
             collectedTerms.add(entry.mesh.userData.name);
             score += 1;
             updateScoreLabel();
+            saveProgress();
         }
 
         gsap.timeline({

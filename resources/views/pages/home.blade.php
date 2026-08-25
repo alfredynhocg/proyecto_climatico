@@ -1,5 +1,6 @@
 @extends('layouts.app', [
-    'title' => 'Educavo - Guía de Educación Climática y Mochila de Acción Climática',
+    'title' => 'Educavo - Educación sobre Cambio Climático | Mochila de Acción Climática',
+    'metaDescription' => 'Guía de Educación Climática y Mochila de Acción Climática: liderazgo frente al cambio climático para estudiantes y educadores del área rural, en alianza con Enseña por Bolivia.',
     'variant' => 'home',
     'bodyClass' => 'home-style4',
 ])
@@ -38,14 +39,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="social-icon">
-            <ul class="icon-cart">
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
         </div>
     </div>
 
