@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500">
+    <defs>
+        <linearGradient id="bcSky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFFDF6"/>
+            <stop offset="1" stop-color="#FFF6E5"/>
+        </linearGradient>
+    </defs>
+
+    <rect x="0" y="0" width="1920" height="500" fill="url(#bcSky)"/>
+
+    <!-- sun accent, upper right -->
+    <circle cx="1750" cy="90" r="70" fill="#F4BF00" opacity="0.10"/>
+    <circle cx="1750" cy="90" r="46" fill="#F4BF00" opacity="0.85"/>
+
+    <!-- soft dotted accents (kept off-center like the template's own decorative style) -->
+    <g fill="#76BB20" opacity="0.35">
+        <circle cx="120" cy="70" r="4"/><circle cx="140" cy="70" r="4"/><circle cx="160" cy="70" r="4"/>
+        <circle cx="120" cy="90" r="4"/><circle cx="140" cy="90" r="4"/><circle cx="160" cy="90" r="4"/>
+        <circle cx="120" cy="110" r="4"/><circle cx="140" cy="110" r="4"/><circle cx="160" cy="110" r="4"/>
+    </g>
+    <g fill="#273c66" opacity="0.3">
+        <circle cx="1820" cy="390" r="4"/><circle cx="1840" cy="390" r="4"/><circle cx="1860" cy="390" r="4"/>
+        <circle cx="1820" cy="410" r="4"/><circle cx="1840" cy="410" r="4"/><circle cx="1860" cy="410" r="4"/>
+        <circle cx="1820" cy="430" r="4"/><circle cx="1840" cy="430" r="4"/><circle cx="1860" cy="430" r="4"/>
+    </g>
+
+    <!-- distant mountains, kept low so the centered title/breadcrumb text stays legible -->
+    <path d="M0 430 L160 370 L300 415 L460 355 L640 420 L820 365 L1000 425 L1180 360 L1360 420 L1540 370 L1720 425 L1920 375 L1920 500 L0 500 Z" fill="#3d5479" opacity="0.35"/>
+    <path d="M0 460 L220 410 L420 450 L660 395 L900 455 L1140 400 L1380 458 L1620 405 L1920 452 L1920 500 L0 500 Z" fill="#273c66" opacity="0.55"/>
+
+    <!-- hills -->
+    <path d="M0 478 C300 455 500 490 800 470 C1100 452 1300 486 1600 468 C1750 460 1850 472 1920 465 L1920 500 L0 500 Z" fill="#76BB20" opacity="0.9"/>
+
+    <!-- small school silhouette, left third -->
+    <g transform="translate(230,392) scale(0.62)" opacity="0.92">
+        <line x1="55" y1="46" x2="55" y2="13" stroke="#273c66" stroke-width="3"/>
+        <path d="M55 13 L83 21 L55 32 Z" fill="#76BB20"/>
+        <polygon points="-12,98 55,44 122,98" fill="#8a5a34"/>
+        <rect x="0" y="96" width="110" height="60" rx="4" fill="#FFF6E5"/>
+        <rect x="14" y="108" width="24" height="24" rx="4" fill="#9FD8FF"/>
+        <rect x="72" y="108" width="24" height="24" rx="4" fill="#9FD8FF"/>
+        <rect x="42" y="130" width="26" height="26" rx="3" fill="#273c66"/>
+    </g>
+
+    <!-- sprout, right third -->
+    <g transform="translate(1620,410) scale(0.85)">
+        <path d="M30 90 C30 74 30 64 30 52" stroke="#4C8014" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M30 68 C10 63 -1 44 7 26 C25 33 32 52 30 68 Z" fill="#5C9418"/>
+        <path d="M30 58 C51 53 62 33 54 15 C36 22 28 42 30 58 Z" fill="#8ED13A"/>
+    </g>
+</svg>

@@ -1,0 +1,465 @@
+/* ------------------------------------------------------------------ */
+/*  Proyecto Climatico - custom components (Educavo brand)             */
+/*  green #76BB20 / navy #273c66 / cream #fff6e5                       */
+/* ------------------------------------------------------------------ */
+
+.rs-banner .banner-btn,
+.rs-cta .btn-part {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.rs-banner .banner-btn .readon,
+.rs-cta .btn-part .readon {
+    white-space: nowrap;
+    margin: 0 !important;
+}
+
+/* Fix template bug: on small phones the stock banner CSS sets a fixed
+   margin-left that barely leaves room inside the viewport, clipping the
+   title/buttons. Let the container's own padding handle the spacing. */
+@media only screen and (max-width: 767px) {
+    .rs-banner.style9 {
+        min-height: 0;
+        padding: 130px 0 60px;
+    }
+    .rs-banner.style9 .banner-content {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        padding: 0 15px;
+    }
+    .rs-banner.style9 .banner-content .banner-title {
+        font-size: 34px !important;
+        line-height: 1.3 !important;
+    }
+    .rs-banner.style9 .banner-content .desc {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+    .rs-banner .banner-btn .readon {
+        white-space: normal;
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
+
+/* The full "Proyecto Climático" wordmark is too wide for a phone-sized
+   header (it was crowding the hamburger/search/cart icons); the mobile
+   logo slots use a compact icon-only mark instead (wired up in the
+   header partials), this just keeps it a sensible tap-friendly size. */
+@media only screen and (max-width: 767px) {
+    .responsive-logo img,
+    .canvas-logo img {
+        max-height: 34px;
+    }
+}
+
+.cc-card.cc-timeline {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 30px;
+}
+.cc-date-badge {
+    flex: none;
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+.cc-date-badge .cc-date-day {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+.cc-date-badge .cc-date-month {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+}
+.cc-date-1 { background: #76BB20; }
+.cc-date-2 { background: #E0503A; }
+.cc-date-3 { background: #F4BF00; color: #273c66; }
+.cc-date-4 { background: #273c66; }
+.cc-timeline h4 {
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+.cc-team {
+    padding: 0 0 30px;
+    overflow: hidden;
+}
+.cc-team .team-thumbnail {
+    margin-bottom: 4px;
+}
+.cc-team .team-img {
+    border-radius: 0;
+}
+.cc-team .team-img img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+.cc-team .team-header {
+    padding-top: 22px;
+    padding-bottom: 4px;
+}
+.cc-team .cc-bio-teaser,
+.cc-team .cc-bio-full {
+    padding: 0 30px;
+}
+.cc-team .cc-bio-teaser {
+    margin-bottom: 12px;
+}
+.cc-team .cc-bio-full {
+    margin: 14px 0 0;
+}
+.cc-team .cc-btn-toggle {
+    margin-left: 30px;
+}
+.cc-team .cc-chevron {
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+.cc-team .cc-btn-toggle[aria-expanded="true"] .cc-chevron {
+    transform: rotate(180deg);
+}
+
+/* Module tabs (Manual del PEB) */
+.cc-module-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    border-bottom: none;
+    padding: 0;
+    list-style: none;
+}
+.cc-module-tabs .nav-link {
+    border: 2px solid #e5e9f0;
+    border-radius: 30px;
+    padding: 12px 26px;
+    font-weight: 700;
+    color: #273c66;
+    background: #ffffff;
+    text-align: center;
+    line-height: 1.3;
+    transition: all 0.2s ease;
+}
+.cc-module-tabs .nav-link .cc-module-tab-age {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #8a93a6;
+    text-transform: none;
+}
+.cc-module-tabs .nav-link.active .cc-module-tab-age {
+    color: rgba(255, 255, 255, 0.85);
+}
+.cc-module-tabs .nav-link.cc-module-tab-green.active { background: #76BB20; border-color: #76BB20; color: #fff; }
+.cc-module-tabs .nav-link.cc-module-tab-navy.active { background: #273c66; border-color: #273c66; color: #fff; }
+.cc-module-tabs .nav-link.cc-module-tab-terracota.active { background: #E0503A; border-color: #E0503A; color: #fff; }
+
+/* Activity accordion headers: code badge + title + time, colored per module.
+   !important throughout: overriding the template's own highly-specific
+   .rs-faq-part .content-part .accordion .card .card-header .card-link rule. */
+.cc-activity-accordion .card-header .card-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+    text-transform: none !important;
+}
+.cc-act-code {
+    flex: none;
+    font-size: 12px;
+    font-weight: 800;
+    background: rgba(255, 255, 255, 0.28);
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.3px;
+}
+.card-link.collapsed .cc-act-code {
+    background: rgba(39, 60, 102, 0.08);
+    color: #273c66;
+}
+.cc-act-title {
+    flex: 1 1 260px;
+}
+.cc-act-time {
+    flex: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    opacity: 0.85;
+    white-space: nowrap;
+}
+.cc-act-time i {
+    margin-right: 3px;
+}
+.cc-activity-navy .card-header .card-link:not(.collapsed) { background: #273c66 !important; }
+.cc-activity-terracota .card-header .card-link:not(.collapsed) { background: #E0503A !important; }
+
+.cc-act-chevron {
+    flex: none;
+    margin-left: auto;
+    transition: transform 0.25s ease;
+}
+.card-link[aria-expanded="true"] .cc-act-chevron {
+    transform: rotate(180deg);
+}
+
+/* Attention-pulse hints: play a few times so first-time visitors notice the
+   tabs/accordions are interactive, then settle down (not a permanent loop). */
+@keyframes cc-pulse-scale {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+}
+.cc-chevron-hint {
+    animation: cc-pulse-scale 1s ease-in-out 3;
+}
+.card-link[aria-expanded="true"] .cc-chevron-hint {
+    animation: none;
+    transform: rotate(180deg);
+}
+
+@keyframes cc-pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(118, 187, 32, 0.45); }
+    70% { box-shadow: 0 0 0 12px rgba(118, 187, 32, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(118, 187, 32, 0); }
+}
+.cc-tab-hint {
+    animation: cc-pulse-ring 1.6s ease-out 3;
+}
+
+.cc-card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+}
+.cc-btn {
+    display: inline-block;
+    background: #ffffff;
+    color: #76BB20;
+    border: 2px solid #76BB20;
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+.cc-btn:hover {
+    background: #76BB20;
+    color: #ffffff;
+}
+
+/* Replace the template's low-contrast photo CTA background (white text over
+   a washed-out light-purple stock photo was unreadable) with a solid brand
+   gradient, guaranteeing contrast for the white heading/desc on top. */
+.rs-cta.home11-style {
+    background: linear-gradient(120deg, #4c8014 0%, #273c66 100%);
+}
+
+.cc-illustration {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(39, 60, 102, 0.12);
+    line-height: 0;
+}
+.cc-illustration img {
+    width: 100%;
+    display: block;
+}
+
+.cc-card.cc-stat {
+    padding: 34px 26px;
+}
+.cc-stat .rs-count {
+    display: inline-block;
+    font-size: 44px;
+    line-height: 1;
+    font-weight: 800;
+    color: #76BB20;
+    margin-bottom: 14px;
+}
+.cc-stat .rs-count.plus:after {
+    content: '+';
+}
+.cc-stat .rs-count.kplus:after {
+    content: 'k+';
+}
+.cc-stat .rs-count.percent:after {
+    content: '%';
+}
+.cc-card.cc-stat p.cc-stat-label {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #54647b;
+    font-weight: 600;
+}
+
+.cc-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 38px 32px;
+    height: 100%;
+    box-shadow: 0 10px 30px rgba(39, 60, 102, 0.08);
+    border: 1px solid #eef1f6;
+    transition: all 0.3s ease;
+}
+.cc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(39, 60, 102, 0.14);
+    border-color: #76BB20;
+}
+.cc-card .cc-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(118, 187, 32, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+.cc-card .cc-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* solid-color icon badges (for icons drawn in white, e.g. the technical-approach glyphs) */
+.cc-icon-green { background: #76BB20; }
+.cc-icon-navy { background: #273c66; }
+.cc-icon-terracota { background: #E0503A; }
+.cc-icon-green img,
+.cc-icon-navy img,
+.cc-icon-terracota img {
+    width: 32px;
+    height: 32px;
+}
+
+.cc-approach {
+    border-top: 4px solid transparent;
+}
+.cc-approach-green { border-top-color: #76BB20; }
+.cc-approach-navy { border-top-color: #273c66; }
+.cc-approach-terracota { border-top-color: #E0503A; }
+
+.cc-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+.cc-chip {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #f3f6fa;
+    color: #273c66;
+}
+.cc-chip-green { background: rgba(118, 187, 32, 0.12); color: #4c8014; }
+.cc-chip-navy { background: rgba(39, 60, 102, 0.09); color: #273c66; }
+.cc-chip-terracota { background: rgba(224, 80, 58, 0.10); color: #b23c26; }
+.cc-card .cc-tag {
+    display: inline-block;
+    background: #273c66;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+.cc-card h3,
+.cc-card h4 {
+    color: #273c66;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.35;
+}
+.cc-card h3 {
+    font-size: 24px;
+}
+.cc-card h4 {
+    font-size: 20px;
+}
+.cc-card h4 a {
+    color: #273c66;
+}
+.cc-card h4 a:hover {
+    color: #76BB20;
+}
+.cc-card p {
+    color: #54647b;
+    font-size: 15px;
+    line-height: 26px;
+    margin-bottom: 10px;
+}
+.cc-card p:last-child {
+    margin-bottom: 0;
+}
+.cc-card .cc-question {
+    color: #273c66;
+    font-weight: 700;
+    font-size: 15.5px;
+}
+.cc-card .cc-eje {
+    font-size: 12.5px;
+    color: #76BB20;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+.cc-card .cc-sub {
+    font-size: 13px;
+    color: #8a93a6;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: block;
+}
+.cc-card a.cc-stretched::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+}
+
+/* small numbered pill used inline (list of ejes tematicos, etc.) */
+.cc-pill-num {
+    background: #76BB20;
+    color: #ffffff;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+}
+
+/* table header accent used on rubric tables */
+.table-climate thead {
+    background: #76BB20;
+    color: #ffffff;
+}
+.table-climate td, .table-climate th {
+    vertical-align: middle;
+}
