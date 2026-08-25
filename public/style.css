@@ -5004,6 +5004,9 @@ body .modal-backdrop {
 .rs-breadcrumbs .breadcrumbs-text.padding {
   padding-top: 100px;
 }
+.breadcrumbs-overlay {
+  overflow: hidden;
+}
 .breadcrumbs-overlay:after {
   content: '';
   position: absolute;
@@ -5012,7 +5015,10 @@ body .modal-backdrop {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
+}
+.breadcrumbs-overlay .breadcrumbs-text {
+  z-index: 2;
 }
 .breadcrumbs1 {
   background-image: url(assets/images/breadcrumbs/1.jpg);
